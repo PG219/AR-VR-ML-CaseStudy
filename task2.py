@@ -14,13 +14,12 @@ plt.axis("off")
 plt.show()
 
 # Reshaping the image into a 2D array of pixels and 3 color values (RGB)
-pixel_vals = image.reshape((-1,3)) # numpy reshape operation -1 unspecified
+pixel_vals = image.reshape((-1,3))
 
-# Convert to float type only for supporting cv2.kmean
 pixel_vals = np.float32(pixel_vals)
 
 
-k = 4  # Try 2, 4, 8, etc.
+k = 3
 kmeans = KMeans(n_clusters=k, random_state=42)
 labels = kmeans.fit_predict(pixel_vals)
 centers = np.uint8(kmeans.cluster_centers_)
@@ -40,8 +39,8 @@ image_lab = cv2.cvtColor(image, cv2.COLOR_RGB2LAB)
 pixel_values_lab = image_lab.reshape((-1, 3))
 pixel_values_lab = np.float32(pixel_values_lab)
 
-# KMeans on LAB
-kmeans_lab = KMeans(n_clusters=4, random_state=42)
+
+kmeans_lab = KMeans(n_clusters=3, random_state=42)
 labels_lab = kmeans_lab.fit_predict(pixel_values_lab)
 centers_lab = np.uint8(kmeans_lab.cluster_centers_)
 

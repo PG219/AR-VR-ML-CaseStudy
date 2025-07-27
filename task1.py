@@ -16,20 +16,18 @@ def plot_clusters(X, labels, title):
     plt.grid(True)
     plt.show()
 
-    if save_path:
-        plt.savefig(save_path, bbox_inches='tight', dpi=300)
-
-    plt.show()
-
 # Plot original unclustered data
 plot_clusters(X, np.zeros(X.shape[0]), "Unclustered Data")
 
 # Apply K-Means
-kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans = KMeans(n_clusters=5, random_state=42)
 labels_kmeans = kmeans.fit_predict(X)
-plot_clusters(X, labels_kmeans, "K-Means Clustering")
+plot_clusters(X, labels_kmeans, "K-Means Clustering[5]")
 
 # Apply DBSCAN
-dbscan = DBSCAN(eps=1.2, min_samples=5)
+dbscan = DBSCAN(eps=1.0, min_samples=5)
 labels_dbscan = dbscan.fit_predict(X)
-plot_clusters(X, labels_dbscan, "DBSCAN Clustering")
+plot_clusters(X, labels_dbscan, "DBSCAN Clustering[1.5]")
+
+
+

@@ -8,6 +8,14 @@ from sklearn.cluster import KMeans, DBSCAN
 X = pd.read_csv('train/X_train.txt', delim_whitespace=True, header=None)
 y = pd.read_csv('train/y_train.txt', delim_whitespace=True, header=None)
 
+print("X shape:", X.shape)
+print("y shape:", y.shape)
+print("\nFirst few rows of X:")
+print(X.head())
+
+print("\nActivity Label Counts:")
+print(y[0].value_counts().sort_index())
+
 # Standardize the data
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
@@ -25,7 +33,7 @@ plt.grid(True)
 plt.show()
 
 
-kmeans = KMeans(n_clusters=6, random_state=42)
+kmeans = KMeans(n_clusters=10, random_state=42)
 labels_k = kmeans.fit_predict(X_scaled)
 
 plt.scatter(X_pca[:, 0], X_pca[:, 1], c=labels_k, cmap='tab10', s=10)
@@ -36,7 +44,7 @@ plt.grid(True)
 plt.show()
 
 
-dbscan = DBSCAN(eps=2, min_samples=10)
+dbscan = DBSCAN(eps=1.5, min_samples=10)
 labels_d = dbscan.fit_predict(X_scaled)
 
 plt.scatter(X_pca[:, 0], X_pca[:, 1], c=labels_d, cmap='tab10', s=10)
