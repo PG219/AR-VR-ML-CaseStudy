@@ -13,7 +13,7 @@ def plot_image(img, title, save_path=None):
         plt.savefig(save_path, bbox_inches='tight', dpi=300)
     plt.show()
 
-def segment_image_kmeans(image, k=4):
+def segment_image_kmeans(image, k=2):
     # Reshape and convert to float32
     pixel_vals = image.reshape((-1, 3)).astype(np.float32)
 
