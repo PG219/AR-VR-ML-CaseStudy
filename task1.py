@@ -16,6 +16,11 @@ def plot_clusters(X, labels, title):
     plt.grid(True)
     plt.show()
 
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight', dpi=300)
+
+    plt.show()
+
 # Plot original unclustered data
 plot_clusters(X, np.zeros(X.shape[0]), "Unclustered Data")
 
